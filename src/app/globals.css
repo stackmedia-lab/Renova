@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+
+  --bg: #faf9f7;
+  --bg-card: #ffffff;
+  --text: #1c1917;
+  --text-muted: #78716c;
+  --accent: #c2853a;
+  --accent-light: #f0e0c8;
+  --border: #e7e5e4;
+  --dark: #1c1917;
+  --dark-card: #252220;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography helpers */
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+/* Grain overlay */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Stripe-inspired bento grid */
+.bento-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.bento-card:hover {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+/* Dark section */
+.dark-section {
+  background: var(--dark);
+  color: white;
+}
+
+/* Accent button */
+.btn-accent {
+  background: var(--accent);
+  color: white;
+  font-family: var(--font-body);
+  font-weight: 500;
+  padding: 0.75rem 1.75rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.btn-accent:hover {
+  background: #a06b28;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 500;
+  padding: 0.75rem 1.75rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.btn-outline:hover {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+/* Section label */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-family: var(--font-body);
+}
+
+/* Animate on scroll */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Divider */
+.divider {
+  width: 48px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin: 1rem 0;
+}
